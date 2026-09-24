@@ -1,0 +1,147 @@
+<div class="attendees-page">
+
+  <nav class="navbar">
+    <div class="logo">EventEase</div>
+
+    <div class="nav-links">
+      <a routerLink="/">Home</a>
+      <a routerLink="/events">Events</a>
+      <a routerLink="/organizer-dashboard">Dashboard</a>
+    </div>
+  </nav>
+
+  <main class="attendees-container">
+
+    <div *ngIf="loading" class="message">
+      Loading attendees...
+    </div>
+
+    <div *ngIf="!loading && error" class="message error">
+      {{ error }}
+    </div>
+
+    <div *ngIf="!loading && !error">
+
+      <div class="page-header">
+
+        <p class="tagline">EVENT MANAGEMENT</p>
+
+        <h1>
+          {{ event?.title }}
+        </h1>
+
+        <p>
+          View everyone who has booked this event.
+        </p>
+
+      </div>
+
+      <section class="summary-card">
+
+        <div class="summary-item">
+          <span>Booked</span>
+          <strong>
+            {{ event?.seatsBooked || 0 }}
+          </strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Capacity</span>
+          <strong>
+            {{ event?.capacity || 0 }}
+          </strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Available</span>
+          <strong>
+            {{ (event?.capacity || 0) - (event?.seatsBooked || 0) }}
+          </strong>
+        </div>
+
+      </section>
+
+      <section class="attendees-section">
+
+        <div class="section-header">
+          <div>
+            <h2>Attendees</h2>
+            <p>
+              {{ attendees.length }} booking(s) found.
+            </p>
+          </div>
+        </div>
+
+        <div
+          *ngIf="attendees.length === 0"
+          class="empty-state"
+        >
+          <div class="empty-icon">👥</div>
+
+          <h2>No attendees yet</h2>
+
+          <p>
+            Nobody has booked this event yet.
+          </p>
+        </div>
+
+        <div
+          *ngIf="attendees.length > 0"
+          class="attendees-list"
+        >
+
+          <div
+            class="attendee-card"
+            *ngFor="let booking of attendees"
+          >
+
+            <div class="attendee-icon">
+              👤
+            </div>
+
+            <div class="attendee-info">
+
+              <h3>
+                {{ booking.user?.name || 'Unknown User' }}
+              </h3>
+
+              <p>
+                📧 {{ booking.user?.email || 'Email unavailable' }}
+              </p>
+
+              <p>
+                📅
+                {{ booking.createdAt | date:'MMMM d, y, h:mm a' }}
+              </p>
+
+            </div>
+
+            <div
+              class="booking-status"
+              [class.cancelled]="booking.status === 'cancelled'"
+            >
+              {{ booking.status || 'confirmed' }}
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <div class="back-section">
+
+        <a
+          routerLink="/organizer-dashboard"
+          class="back-btn"
+        >
+          ← Back to Dashboard
+        </a>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>

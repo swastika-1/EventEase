@@ -1,0 +1,137 @@
+<div class="events-page">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+
+    <div class="logo">
+      EventEase
+    </div>
+
+    <div class="nav-links">
+      <a routerLink="/">Home</a>
+      <a routerLink="/events">Events</a>
+      <a routerLink="/my-bookings">My Bookings</a>
+    </div>
+
+  </nav>
+
+
+  <!-- Main Content -->
+  <main class="events-container">
+
+    <div class="page-header">
+
+      <p class="tagline">
+        DISCOVER SOMETHING AMAZING
+      </p>
+
+      <h1>
+        Upcoming Events
+      </h1>
+
+      <p>
+        Explore exciting events and reserve your seat.
+      </p>
+
+    </div>
+
+
+    <!-- Loading -->
+    <div
+      *ngIf="loading"
+      class="message"
+    >
+      Loading events...
+    </div>
+
+
+    <!-- Error -->
+    <div
+      *ngIf="!loading && error"
+      class="message error"
+    >
+      {{ error }}
+    </div>
+
+
+    <!-- No Events -->
+    <div
+      *ngIf="!loading && !error && events.length === 0"
+      class="empty-state"
+    >
+
+      <div class="empty-icon">
+        📅
+      </div>
+
+      <h2>
+        No events available
+      </h2>
+
+      <p>
+        There are no upcoming events right now.
+      </p>
+
+    </div>
+
+
+    <!-- Events -->
+    <div
+      *ngIf="!loading && !error && events.length > 0"
+      class="events-grid"
+    >
+
+      <div
+        class="event-card"
+        *ngFor="let event of events"
+      >
+
+        <div class="event-icon">
+          ✦
+        </div>
+
+
+        <div class="event-content">
+
+          <h2>
+            {{ event.title }}
+          </h2>
+
+          <p>
+            📅 {{ event.formattedDate }}
+          </p>
+
+          <p>
+            📍 {{ event.venue }}
+          </p>
+
+          <p *ngIf="event.description">
+            {{ event.description }}
+          </p>
+
+
+          <div class="event-footer">
+
+            <span>
+              🎟️ {{ event.availableSeats }} seats available
+            </span>
+
+            <button
+              class="book-btn"
+              (click)="bookEvent(event._id)"
+              [disabled]="event.availableSeats <= 0"
+            >
+              {{ event.availableSeats > 0 ? 'Book Now →' : 'Fully Booked' }}
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>

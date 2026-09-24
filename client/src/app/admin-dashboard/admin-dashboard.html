@@ -1,0 +1,304 @@
+<div class="admin-page">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+
+    <div class="logo">
+      EventEase
+    </div>
+
+    <div class="nav-links">
+      <a routerLink="/">Home</a>
+      <a routerLink="/events">Events</a>
+      <a routerLink="/organizer-dashboard">
+        Organizer Dashboard
+      </a>
+    </div>
+
+  </nav>
+
+
+  <!-- Main -->
+  <main class="admin-container">
+
+    <!-- Header -->
+    <div class="admin-header">
+
+      <div>
+        <p class="tagline">SYSTEM MANAGEMENT</p>
+
+        <h1>Admin Dashboard</h1>
+
+        <p>
+          Manage users, organizers and events from one place.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- Loading -->
+    <div
+      *ngIf="loading"
+      class="message"
+    >
+      Loading admin dashboard...
+    </div>
+
+
+    <!-- Error -->
+    <div
+      *ngIf="!loading && error"
+      class="message error"
+    >
+      {{ error }}
+    </div>
+
+
+    <!-- Dashboard -->
+    <div
+      *ngIf="!loading && !error"
+    >
+
+      <!-- Statistics -->
+      <section class="stats-grid">
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            👥
+          </div>
+
+          <div>
+            <p>Total Users</p>
+            <h2>{{ totalUsers }}</h2>
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            🎯
+          </div>
+
+          <div>
+            <p>Total Organizers</p>
+            <h2>{{ totalOrganizers }}</h2>
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            📅
+          </div>
+
+          <div>
+            <p>Total Events</p>
+            <h2>{{ totalEvents }}</h2>
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            🎟️
+          </div>
+
+          <div>
+            <p>Total Bookings</p>
+            <h2>{{ totalBookings }}</h2>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Users -->
+      <section class="admin-section">
+
+        <div class="section-header">
+
+          <div>
+            <h2>Users</h2>
+
+            <p>
+              View registered users and their roles.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div
+          *ngIf="users.length === 0"
+          class="empty-state"
+        >
+          No users found.
+        </div>
+
+
+        <div
+          *ngIf="users.length > 0"
+          class="table-wrapper"
+        >
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Joined</th>
+              </tr>
+
+            </thead>
+
+
+            <tbody>
+
+              <tr
+                *ngFor="let user of users"
+              >
+
+                <td>
+                  {{ user.name }}
+                </td>
+
+                <td>
+                  {{ user.email }}
+                </td>
+
+                <td>
+
+                  <span
+                    class="role-badge"
+                    [ngClass]="user.role"
+                  >
+                    {{ user.role }}
+                  </span>
+
+                </td>
+
+                <td>
+                  {{ user.createdAt | date:'MMM d, y' }}
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- Events -->
+      <section class="admin-section">
+
+        <div class="section-header">
+
+          <div>
+            <h2>All Events</h2>
+
+            <p>
+              Monitor events created on EventEase.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div
+          *ngIf="events.length === 0"
+          class="empty-state"
+        >
+          No events found.
+        </div>
+
+
+        <div
+          *ngIf="events.length > 0"
+          class="event-list"
+        >
+
+          <div
+            class="event-card"
+            *ngFor="let event of events"
+          >
+
+            <div class="event-info">
+
+              <span class="event-status">
+                ACTIVE
+              </span>
+
+              <h2>
+                {{ event.title }}
+              </h2>
+
+              <p>
+                📅
+                {{ event.date | date:'MMMM d, y' }}
+              </p>
+
+              <p>
+                📍
+                {{ event.venue }}
+              </p>
+
+              <p>
+                Organizer:
+                {{ event.organizer?.name || 'Unknown' }}
+              </p>
+
+            </div>
+
+
+            <div class="event-stats">
+
+              <div>
+                <strong>
+                  {{ event.seatsBooked || 0 }}
+                </strong>
+
+                <span>
+                  Booked
+                </span>
+              </div>
+
+
+              <div>
+                <strong>
+                  {{ event.capacity }}
+                </strong>
+
+                <span>
+                  Capacity
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+</div>

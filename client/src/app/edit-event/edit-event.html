@@ -1,0 +1,285 @@
+<div class="edit-event-page">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+
+    <div class="logo">
+      EventEase
+    </div>
+
+    <div class="nav-links">
+      <a routerLink="/">Home</a>
+      <a routerLink="/events">Events</a>
+      <a routerLink="/organizer-dashboard">Dashboard</a>
+    </div>
+
+  </nav>
+
+
+  <!-- Main Content -->
+  <main class="edit-event-container">
+
+    <!-- Loading -->
+    <div
+      *ngIf="loading"
+      class="message"
+    >
+      Loading event...
+    </div>
+
+
+    <!-- Error -->
+    <div
+      *ngIf="!loading && error"
+      class="error-message"
+    >
+      {{ error }}
+    </div>
+
+
+    <!-- Edit Form -->
+    <div *ngIf="!loading && !error">
+
+      <div class="page-header">
+
+        <p class="tagline">
+          EVENT MANAGEMENT
+        </p>
+
+        <h1>
+          Edit Event
+        </h1>
+
+        <p>
+          Update your event details.
+        </p>
+
+      </div>
+
+
+      <div
+        *ngIf="error"
+        class="error-message"
+      >
+        {{ error }}
+      </div>
+
+
+      <form
+        class="event-form"
+        (ngSubmit)="updateEvent()"
+      >
+
+        <!-- Title -->
+        <div class="form-group">
+
+          <label for="title">
+            Event Title
+          </label>
+
+          <input
+            id="title"
+            type="text"
+            name="title"
+            [(ngModel)]="title"
+            placeholder="Enter event title"
+            required
+          >
+
+        </div>
+
+
+        <!-- Description -->
+        <div class="form-group">
+
+          <label for="description">
+            Description
+          </label>
+
+          <textarea
+            id="description"
+            name="description"
+            [(ngModel)]="description"
+            placeholder="Describe your event"
+            rows="4"
+            required
+          ></textarea>
+
+        </div>
+
+
+        <!-- Category -->
+        <div class="form-group">
+
+          <label for="category">
+            Category
+          </label>
+
+          <select
+            id="category"
+            name="category"
+            [(ngModel)]="category"
+            required
+          >
+
+            <option value="">
+              Select a category
+            </option>
+
+            <option value="Technology">
+              Technology
+            </option>
+
+            <option value="Workshop">
+              Workshop
+            </option>
+
+            <option value="Cultural">
+              Cultural
+            </option>
+
+            <option value="Sports">
+              Sports
+            </option>
+
+            <option value="Other">
+              Other
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- Venue -->
+        <div class="form-group">
+
+          <label for="venue">
+            Venue
+          </label>
+
+          <input
+            id="venue"
+            type="text"
+            name="venue"
+            [(ngModel)]="venue"
+            placeholder="Enter event venue"
+            required
+          >
+
+        </div>
+
+
+        <!-- Date + Time -->
+        <div class="form-row">
+
+          <div class="form-group">
+
+            <label for="date">
+              Date
+            </label>
+
+            <input
+              id="date"
+              type="date"
+              name="date"
+              [(ngModel)]="date"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="time">
+              Time
+            </label>
+
+            <input
+              id="time"
+              type="time"
+              name="time"
+              [(ngModel)]="time"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- Capacity -->
+        <div class="form-group">
+
+          <label for="capacity">
+            Seat Capacity
+          </label>
+
+          <input
+            id="capacity"
+            type="number"
+            name="capacity"
+            [(ngModel)]="capacity"
+            placeholder="Enter number of seats"
+            min="1"
+            required
+          >
+
+        </div>
+
+
+        <!-- Image -->
+        <div class="form-group">
+
+          <label for="image">
+            Event Image URL
+            <span>(Optional)</span>
+          </label>
+
+          <input
+            id="image"
+            type="url"
+            name="image"
+            [(ngModel)]="image"
+            placeholder="https://example.com/image.jpg"
+          >
+
+        </div>
+
+
+        <!-- Buttons -->
+        <div class="form-actions">
+
+          <a
+            routerLink="/organizer-dashboard"
+            class="cancel-btn"
+          >
+            Cancel
+          </a>
+
+          <button
+            type="submit"
+            class="save-btn"
+            [disabled]="saving"
+          >
+
+            <span *ngIf="!saving">
+              Save Changes →
+            </span>
+
+            <span *ngIf="saving">
+              Saving Changes...
+            </span>
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </main>
+
+</div>

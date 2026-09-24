@@ -1,0 +1,283 @@
+<div class="dashboard-page">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+
+    <div class="logo">
+      EventEase
+    </div>
+
+    <div class="nav-links">
+      <a routerLink="/">Home</a>
+      <a routerLink="/events">Events</a>
+      <a routerLink="/my-bookings">My Bookings</a>
+    </div>
+
+  </nav>
+
+
+  <!-- Main Dashboard -->
+  <main class="dashboard-container">
+
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+
+      <div>
+        <p class="tagline">
+          EVENT MANAGEMENT
+        </p>
+
+        <h1>
+          Organizer Dashboard
+        </h1>
+
+        <p>
+          Create, manage and monitor your events.
+        </p>
+      </div>
+
+      <button  class="create-btn"
+  routerLink="/create-event"
+>
+  + Create Event
+      </button>
+
+    </div>
+
+
+    <!-- Loading -->
+    <div
+      *ngIf="loading"
+      class="message"
+    >
+      Loading dashboard...
+    </div>
+
+
+    <!-- Error -->
+    <div
+      *ngIf="!loading && error"
+      class="message error"
+    >
+      {{ error }}
+    </div>
+
+
+    <!-- Dashboard Content -->
+    <div *ngIf="!loading && !error">
+
+
+      <!-- Statistics -->
+      <section class="stats-grid">
+
+        <!-- Total Events -->
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            📅
+          </div>
+
+          <div>
+            <p>
+              Total Events
+            </p>
+
+            <h2>
+              {{ totalEvents }}
+            </h2>
+          </div>
+
+        </div>
+
+
+        <!-- Total Bookings -->
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            🎟️
+          </div>
+
+          <div>
+            <p>
+              Total Bookings
+            </p>
+
+            <h2>
+              {{ totalBookings }}
+            </h2>
+          </div>
+
+        </div>
+
+
+        <!-- Available Seats -->
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            💺
+          </div>
+
+          <div>
+            <p>
+              Available Seats
+            </p>
+
+            <h2>
+              {{ availableSeats }}
+            </h2>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- Events Section -->
+      <section class="events-section">
+
+        <div class="section-header">
+
+          <div>
+            <h2>
+              Your Events
+            </h2>
+
+            <p>
+              Manage the events you have created.
+            </p>
+          </div>
+
+        </div>
+
+
+        <!-- No Events -->
+        <div
+          *ngIf="events.length === 0"
+          class="empty-state"
+        >
+
+          <div class="empty-icon">
+            📅
+          </div>
+
+          <h2>
+            No events yet
+          </h2>
+
+          <p>
+            You haven't created any events yet.
+          </p>
+
+        </div>
+
+
+        <!-- Event List -->
+        <div
+          *ngIf="events.length > 0"
+          class="event-list"
+        >
+
+          <div
+            class="event-management-card"
+            *ngFor="let event of events"
+          >
+
+            <!-- Event Details -->
+            <div class="event-details">
+
+              <span class="event-status">
+                ACTIVE
+              </span>
+
+              <h2>
+                {{ event.title }}
+              </h2>
+
+              <p>
+                📅 {{ event.date | date:'MMMM d, y' }}
+              </p>
+
+              <p>
+                📍 {{ event.venue }}
+              </p>
+
+              <p *ngIf="event.description">
+                {{ event.description }}
+              </p>
+
+            </div>
+
+
+            <!-- Event Statistics -->
+            <div class="event-stats">
+
+              <div>
+                <strong>
+                  {{ event.capacity - (event.seatsBooked || 0) }}
+                </strong>
+
+                <span>
+                  Available
+                </span>
+              </div>
+
+              <div>
+                <strong>
+                  {{ event.seatsBooked || 0 }}
+                </strong>
+
+                <span>
+                  Booked
+                </span>
+              </div>
+
+              <div>
+                <strong>
+                  {{ event.capacity }}
+                </strong>
+
+                <span>
+                  Capacity
+                </span>
+              </div>
+
+            </div>
+
+
+            <!-- Event Actions -->
+            <div class="event-actions">
+
+  <button
+    class="edit-btn"
+    [routerLink]="['/edit-event', event._id]"
+  >
+    Edit
+  </button>
+
+  <button
+    class="attendees-btn"
+    [routerLink]="['/attendees', event._id]"
+  >
+    View Attendees
+  </button>
+
+  <button
+    class="delete-btn"
+    (click)="deleteEvent(event._id)"
+  >
+    Delete
+  </button>
+
+</div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+</div>

@@ -1,0 +1,339 @@
+.dashboard-page {
+  min-height: 100vh;
+  background: #f8f7f4;
+  color: #1f2937;
+}
+
+/* Navbar */
+
+.navbar {
+  height: 72px;
+  padding: 0 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #4b5563;
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: #111827;
+}
+
+
+/* Main */
+
+.dashboard-container {
+  width: 84%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+
+
+/* Header */
+
+.dashboard-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 45px;
+}
+
+.tagline {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #7c3aed;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 46px;
+  color: #111827;
+}
+
+.dashboard-header p:last-child {
+  margin-top: 12px;
+  color: #6b7280;
+  font-size: 17px;
+}
+
+
+/* Create Button */
+
+.create-btn {
+  border: none;
+  padding: 13px 20px;
+  border-radius: 10px;
+  background: #111827;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.create-btn:hover {
+  background: #7c3aed;
+}
+
+
+/* Statistics */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: 50px;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 25px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+}
+
+.stat-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #ede9fe;
+  font-size: 24px;
+}
+
+.stat-card p {
+  margin: 0 0 5px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.stat-card h2 {
+  margin: 0;
+  font-size: 28px;
+  color: #111827;
+}
+
+
+/* Events Section */
+
+.events-section {
+  margin-top: 20px;
+}
+
+.section-header {
+  margin-bottom: 20px;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 28px;
+  color: #111827;
+}
+
+.section-header p {
+  margin-top: 7px;
+  color: #6b7280;
+}
+
+
+/* Event Card */
+
+.event-management-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 28px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+}
+
+.event-details {
+  flex: 1;
+}
+
+.event-status {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.event-details h2 {
+  margin: 0 0 15px;
+  font-size: 24px;
+  color: #111827;
+}
+
+.event-details p {
+  margin: 7px 0;
+  color: #6b7280;
+}
+
+
+/* Event Stats */
+
+.event-stats {
+  display: flex;
+  gap: 35px;
+}
+
+.event-stats div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.event-stats strong {
+  font-size: 24px;
+  color: #111827;
+}
+
+.event-stats span {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+
+/* Actions */
+
+.event-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.edit-btn,
+.attendees-btn,
+.delete-btn {
+  padding: 10px 16px;
+  border-radius: 9px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+
+/* Edit */
+
+.edit-btn {
+  border: 1px solid #7c3aed;
+  background: white;
+  color: #7c3aed;
+}
+
+.edit-btn:hover {
+  background: #7c3aed;
+  color: white;
+}
+
+
+/* View Attendees */
+
+.attendees-btn {
+  border: 1px solid #6b7280;
+  background: white;
+  color: #111827;
+}
+
+.attendees-btn:hover {
+  background: #111827;
+  color: white;
+  border-color: #111827;
+}
+
+
+/* Delete */
+
+.delete-btn {
+  border: 1px solid #dc2626;
+  background: white;
+  color: #dc2626;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+  color: white;
+}
+
+
+/* Mobile */
+
+@media (max-width: 800px) {
+
+  .dashboard-container {
+    width: 90%;
+    padding: 45px 0;
+  }
+
+  .dashboard-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dashboard-header h1 {
+    font-size: 36px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-management-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .event-stats {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .event-actions {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .event-actions button {
+    flex: 1;
+    min-width: 120px;
+  }
+
+}

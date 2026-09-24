@@ -1,0 +1,148 @@
+<div class="register-page">
+
+  <div class="register-card">
+
+    <!-- Header -->
+    <div class="register-header">
+
+      <div class="logo">
+        EventEase
+      </div>
+
+      <p class="welcome">
+        JOIN EVENTEASE 🎟️
+      </p>
+
+      <h1>
+        Create your account
+      </h1>
+
+      <span>
+        Discover events, book your seat and manage your bookings.
+      </span>
+
+    </div>
+
+
+    <!-- Error -->
+    <div
+      *ngIf="error"
+      class="error-message"
+    >
+      {{ error }}
+    </div>
+
+
+    <!-- Register Form -->
+    <form (ngSubmit)="register()">
+
+      <!-- Name -->
+      <div class="form-group">
+
+        <label for="name">
+          Full Name
+        </label>
+
+        <input
+          id="name"
+          type="text"
+          name="name"
+          [(ngModel)]="name"
+          placeholder="Enter your full name"
+          required
+        >
+
+      </div>
+
+
+      <!-- Email -->
+      <div class="form-group">
+
+        <label for="email">
+          Email
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="Enter your email"
+          required
+        >
+
+      </div>
+
+
+      <!-- Password -->
+      <div class="form-group">
+
+        <label for="password">
+          Password
+        </label>
+
+        <input
+          id="password"
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Create a password"
+          required
+        >
+
+      </div>
+
+
+      <!-- Confirm Password -->
+      <div class="form-group">
+
+        <label for="confirmPassword">
+          Confirm Password
+        </label>
+
+        <input
+          id="confirmPassword"
+          type="password"
+          name="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          placeholder="Confirm your password"
+          required
+        >
+
+      </div>
+
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        class="register-btn"
+        [disabled]="loading"
+      >
+
+        <span *ngIf="!loading">
+          Create Account
+        </span>
+
+        <span *ngIf="loading">
+          Creating Account...
+        </span>
+
+      </button>
+
+    </form>
+
+
+    <!-- Login Link -->
+    <div class="login-link">
+
+      Already have an account?
+
+      <a routerLink="/login">
+        Login
+      </a>
+
+    </div>
+
+  </div>
+
+</div>

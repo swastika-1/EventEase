@@ -1,0 +1,111 @@
+<div class="app-container">
+
+  <nav class="navbar">
+
+  <div class="logo">
+    EventEase
+  </div>
+
+  <div class="nav-links">
+
+    <a routerLink="/">
+      Home
+    </a>
+
+    <a routerLink="/events">
+      Events
+    </a>
+
+    <a routerLink="/my-bookings" *ngIf="isLoggedIn">
+      My Bookings
+    </a>
+
+    <a routerLink="/login" *ngIf="!isLoggedIn">
+      Login
+    </a>
+
+    <button
+     class="register-btn"
+     *ngIf="!isLoggedIn"
+      routerLink="/register"
+    >
+      Register
+    </button>
+
+    <button
+      class="logout-btn"
+      *ngIf="isLoggedIn"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+
+  </div>
+
+</nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <p class="tagline">YOUR EVENTS, YOUR EXPERIENCE</p>
+
+      <h1>
+        Discover.<br>
+        Book.<br>
+        <span>Experience.</span>
+      </h1>
+
+      <p class="hero-text">
+        Find exciting events, reserve your seat, and manage
+        all your bookings in one simple platform.
+      </p>
+
+      <button class="explore-btn">
+        Explore Events →
+      </button>
+    </div>
+
+    <div class="hero-card">
+      <div class="event-icon">✦</div>
+
+      <h2>What's happening?</h2>
+
+      <p>
+        Discover technology fests, workshops,
+        cultural events and more.
+      </p>
+
+      <div class="mini-event">
+        <span>OCT</span>
+
+        <div>
+          <strong>KIIT Tech Fest 2026</strong>
+          <small>Campus 6 Auditorium</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+
+    <div class="feature">
+      <div class="feature-icon">🔎</div>
+      <h3>Discover Events</h3>
+      <p>Browse upcoming events and find something you'll love.</p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">🎟️</div>
+      <h3>Easy Booking</h3>
+      <p>Reserve your seat with just a few clicks.</p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">📅</div>
+      <h3>Manage Bookings</h3>
+      <p>View, cancel and manage all your event bookings.</p>
+    </div>
+
+  </section>
+
+</div>
+

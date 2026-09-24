@@ -1,0 +1,146 @@
+<div class="bookings-page">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+
+    <div class="logo">
+      EventEase
+    </div>
+
+    <div class="nav-links">
+      <a routerLink="/">Home</a>
+      <a routerLink="/events">Events</a>
+      <a routerLink="/my-bookings">My Bookings</a>
+    </div>
+
+  </nav>
+
+
+  <!-- Main Content -->
+  <main class="bookings-container">
+
+    <!-- Page Header -->
+    <div class="page-header">
+
+      <p class="tagline">
+        YOUR EVENTS
+      </p>
+
+      <h1>
+        My Bookings
+      </h1>
+
+      <p>
+        View and manage all the events you've booked.
+      </p>
+
+    </div>
+
+
+    <!-- Loading -->
+    <div
+      *ngIf="loading"
+      class="message"
+    >
+      Loading your bookings...
+    </div>
+
+
+    <!-- Error -->
+    <div
+      *ngIf="!loading && error"
+      class="message error"
+    >
+      {{ error }}
+    </div>
+
+
+    <!-- No Bookings -->
+    <div
+      *ngIf="!loading && !error && bookings.length === 0"
+      class="empty-state"
+    >
+
+      <div class="empty-icon">
+        🎟️
+      </div>
+
+      <h2>
+        No bookings yet
+      </h2>
+
+      <p>
+        You haven't booked any events yet.
+      </p>
+
+      <a routerLink="/events">
+        Discover Events →
+      </a>
+
+    </div>
+
+
+    <!-- Bookings -->
+    <div
+      *ngIf="!loading && !error && bookings.length > 0"
+      class="booking-list"
+    >
+
+      <div
+        class="booking-card"
+        *ngFor="let booking of bookings"
+      >
+
+        <div class="booking-info">
+
+          <!-- Status -->
+          <p
+            class="booking-status"
+            [class.cancelled]="booking.status === 'cancelled'"
+          >
+            {{ booking.status }}
+          </p>
+
+
+          <!-- Event Title -->
+          <h2>
+            {{ booking.event?.title }}
+          </h2>
+
+
+          <!-- Date -->
+          <p>
+            📅 {{ booking.event?.date | date:'MMMM d, y' }}
+          </p>
+
+
+          <!-- Venue -->
+          <p>
+            📍 {{ booking.event?.venue }}
+          </p>
+
+
+          <!-- Time -->
+          <p>
+            🕐 {{ booking.event?.time }}
+          </p>
+
+
+          <!-- Cancel -->
+          <button
+            *ngIf="booking.status === 'confirmed'"
+            class="cancel-btn"
+            (click)="cancelBooking(booking._id)"
+          >
+            Cancel Booking
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
