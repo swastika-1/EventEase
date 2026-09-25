@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AdminService {
 
-  private apiUrl = 'http://localhost:5000/api/admin';
+  private apiUrl = 'https://eventease-production-046d.up.railway.app/api/admin';
 
   constructor(private http: HttpClient) {}
 

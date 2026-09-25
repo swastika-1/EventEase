@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EventService {
 
-  private apiUrl = 'http://localhost:5000/api/events';
+  private apiUrl = 'https://eventease-production-046d.up.railway.app/api/events';
 
   constructor(private http: HttpClient) {}
 
