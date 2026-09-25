@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Booking {
 
-  private apiUrl = 'http://localhost:5000/api/bookings';
+  private apiUrl = 'https://eventease-production-046d.up.railway.app/api/bookings';
 
   constructor(private http: HttpClient) {}
 
@@ -25,3 +25,4 @@ export class Booking {
   }
 
 }
+// Railway production API
