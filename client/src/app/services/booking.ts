@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,19 +10,37 @@ export class Booking {
 
   constructor(private http: HttpClient) {}
 
+  private getHeaders() {
+    const token = localStorage.getItem('token');
+
+    return {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      })
+    };
+  }
+
   getMyBookings() {
-    return this.http.get(`${this.apiUrl}/my?t=${Date.now()}`);
+    return this.http.get(
+      `${this.apiUrl}/my?t=${Date.now()}`,
+      this.getHeaders()
+    );
   }
 
   bookEvent(eventId: string) {
-    return this.http.post(`${this.apiUrl}`, {
-      eventId: eventId
-    });
+    return this.http.post(
+      this.apiUrl,
+      { eventId: eventId },
+      this.getHeaders()
+    );
   }
 
   cancelBooking(bookingId: string) {
-    return this.http.put(`${this.apiUrl}/${bookingId}/cancel`, {});
+    return this.http.put(
+      `${this.apiUrl}/${bookingId}/cancel`,
+      {},
+      this.getHeaders()
+    );
   }
 
 }
-// Railway production API
